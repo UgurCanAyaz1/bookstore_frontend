@@ -1,63 +1,111 @@
 import React from "react";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
+import axios from "axios";
 import "../static/css/style.css";
 
-function Registration() {
+const initialValues = {
+  username: '',
+  firstname: '',
+  lastname: '',
+  email: '',
+  password: '',
+};
+
+const validationSchema = Yup.object({
+  username: Yup.string().required('Username is required'),
+  firstname: Yup.string().required('First name is required'),
+  lastname: Yup.string().required('Last name is required'),
+  email: Yup.string().email('Invalid email format').required('Email is required'),
+  password: Yup.string().required('Password is required'),
+  confirmPassword: Yup.string()
+    .oneOf([Yup.ref('password'), ''], 'Passwords must match')
+    .required('Confirm Password is required'),
+});
+
+const onSubmit = async (values) => {
+  try {
+    const response = await axios.put('http://localhost:5234/api/user/AddUser', {
+      firstName: values.firstname,
+      lastName: values.lastname,
+      userName: values.username,
+      emailAddress: values.email,
+      passwordHash: values.password,
+    });
+    console.log(response.data);
+    // Başarılı kayıt işleminden sonra yapılacaklar
+  } catch (error) {
+    console.error('Registration error', error);
+  }
+};
+
+const Registration = () => {
   return (
     <>
-    <ul className="breadcrumb" style={{ listStyleType: "none", display: "flex", padding: 40, margin: 0 }}>
-    <li style={{ marginRight: "10px" }}>
-        <a href="/" style={{ color: "#6c5dd4" }}>Home</a>
-    </li>
-    <li>
-        <a href="/registration">Registration</a>
-    </li>
-</ul>
-    <section className="registration">
-      <h3>Registration</h3>
-      <div className="registration-form">
-        <h4>Create New Account</h4>
-        <p>If you don't have an account with us, Please Create new account.</p>
-        <div className="input-form">
-          <div className="input-field">
-            <label htmlFor="name">Username *</label>
-            <input type="text" name="" id="name" placeholder="Your Name" />
-          </div>
-          <div className="input-field">
-            <label htmlFor="email">Email *</label>
-            <input type="email" name="" id="email" placeholder="Your Email" />
-          </div>
-          <div className="input-field">
-            <label htmlFor="password">Password *</label>
-            <input
-              type="password"
-              name=""
-              id="password"
-              placeholder="Password"
-            />
-          </div>
-          <div className="input-field">
-            <label htmlFor="cpassword">Confirm Password *</label>
-            <input
-              type="password"
-              name=""
-              id="cpassword"
-              placeholder="Confirm Password"
-            />
-          </div>
-          <p>
-            Your personal data will be used to support your experience
-            throughout this website, to manage access to your account, and for
-            other purposes described in our <a href="/">privacy policy</a>
-          </p>
-          <button>Create Account</button>
-          <p>
-            Already Have an Account ? <a href="login.html">Login Now</a>
-          </p>
+      <ul className="breadcrumb" style={{ listStyleType: "none", display: "flex", padding: 40, margin: 0 }}>
+        <li style={{ marginRight: "10px" }}>
+          <a href="/" style={{ color: "#6c5dd4" }}>Home</a>
+        </li>
+        <li>
+          <a href="/registration">Registration</a>
+        </li>
+      </ul>
+      <section className="registration">
+        <h3>Registration</h3>
+        <div className="registration-form">
+          <h4>Create New Account</h4>
+          <p>If you don't have an account with us, please create a new account.</p>
+          <Formik
+            initialValues={initialValues}
+            validationSchema={validationSchema}
+            onSubmit={onSubmit}
+          >
+            <Form className="input-form">
+              <div className="input-field">
+                <label htmlFor="username">Username *</label>
+                <Field type="text" id="username" name="username" placeholder="Your Username"/>
+                <ErrorMessage name="username" component="div" className="error" />
+              </div>
+              <div className="input-field">
+                <label htmlFor="firstname">First name *</label>
+                <Field type="text" id="firstname" name="firstname" placeholder="Your First Name"/>
+                <ErrorMessage name="firstname" component="div" className="error" />
+              </div>
+              <div className="input-field">
+                <label htmlFor="lastname">Last name *</label>
+                <Field type="text" id="lastname" name="lastname" placeholder="Your Last Name"/>
+                <ErrorMessage name="lastname" component="div" className="error" />
+              </div>
+              <div className="input-field">
+                <label htmlFor="email">Email *</label>
+                <Field type="email" id="email" name="email" placeholder="Your Email"/>
+                <ErrorMessage name="email" component="div" className="error" />
+              </div>
+              <div className="input-field">
+                <label htmlFor="password">Password *</label>
+                <Field type="password" id="password" name="password" placeholder="Password"/>
+                <ErrorMessage name="password" component="div" className="error" />
+              </div>
+              <div className="input-field">
+                <label htmlFor="confirmPassword">Confirm Password *</label>
+                <Field type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password"/>
+                <ErrorMessage name="confirmPassword" component="div" className="error" />
+              </div>
+              <p>
+                Your personal data will be used to support your experience
+                throughout this website, to manage access to your account, and for
+                other purposes described in our <a href="/">privacy policy</a>.
+              </p>
+              <button type="submit">Create Account</button>
+              <p>
+                Already have an account? <a href="/login">Login Now</a>
+              </p>
+            </Form>
+          </Formik>
         </div>
-      </div>
-    </section>
+      </section>
     </>
   );
-}
+};
 
 export default Registration;
