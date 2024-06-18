@@ -7,6 +7,11 @@ import CartPage from "./pages/CartPage"
 import CheckoutPage from "./pages/CheckoutPage"
 import ErrorPage from "./pages/ErrorPage"
 import BooksPage from "./pages/BooksPage"
+import BooksActionPage from "./pages/BooksActionPage"
+import BooksAdventurePage from "./pages/BooksAdventurePage"
+import BooksComedyPage from "./pages/BooksComedyPage"
+import BooksCrimePage from "./pages/BooksCrimePage"
+import BooksDramaPage from "./pages/BooksDramaPage"
 
 const router = createBrowserRouter([
     {
@@ -36,6 +41,26 @@ const router = createBrowserRouter([
     {
         path: "/Books",
         element: <BooksPage/>
+    },
+    {
+        path: "/Books/Action",
+        element: <BooksActionPage/>
+    },
+    {
+        path: "/Books/Adventure",
+        element: <BooksAdventurePage/>
+    },
+    {
+        path: "/Books/Comedy",
+        element: <BooksComedyPage/>
+    },
+    {
+        path: "/Books/Crime",
+        element: <BooksCrimePage/>
+    },
+    {
+        path: "/Books/Drama",
+        element: <BooksDramaPage/>
     },
     {
         path: "*",

@@ -10,28 +10,34 @@ function UserNavbar() {
         <div className="img">
           <img src={logo} alt="/" />
         </div>
-        <div className="title">
+        <div className="logo-header">
           <h4>
-            Bookoe
-            <i className="fa-solid fa-grid" />
+            <a href="/">Bookoe</a>
           </h4>
           <small>Book Store Website</small>
         </div>
       </div>
-      <div className="search-box">
-        <div className="search-field">
-          <input type="text" placeholder="Search over 30 million Book titles" />
-          <button className="search-icon">
-            <i className="fa-solid fa-magnifying-glass" />
-          </button>
+      <a href="/">Home</a>
+
+      <div className="dropdown">
+        <button className="dropbtn">Books</button>
+        <div className="dropdown-content">
+          <a href="/books/action">Action</a>
+          <a href="/books/adventure">Adventure</a>
+          <a href="/books/comedy">Comedy</a>
+          <a href="/books/crime">Crime</a>
+          <a href="/books/drama">Drama</a>
         </div>
       </div>
+      <a href="/contact">Contact</a>
       <div className="nav-end">
         <button className="likebtn">
-          <i className="fa-regular fa-heart" /> <span>35</span>
+          <a href="/">
+            <i className="fa-regular fa-heart" /> <span>35</span>
+          </a>
         </button>
         <button className="cart">
-          <a href="cart-item.html">
+          <a href="/cart">
             <i className="fa-solid fa-cart-shopping" /> <span>4</span>
           </a>
         </button>

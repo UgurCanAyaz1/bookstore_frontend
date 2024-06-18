@@ -66,25 +66,19 @@ function Footer() {
           <h4>Book Categories</h4>
           <ul>
             <li>
-              <a href="../pages/book-filter.html">Action</a>
+              <a href="/books/action">Action</a>
             </li>
             <li>
-              <a href="../pages/book-filter.html">Adventure</a>
+              <a href="/books/adventure">Adventure</a>
             </li>
             <li>
-              <a href="../pages/book-filter.html">Comedy</a>
+              <a href="/books/comedy">Comedy</a>
             </li>
             <li>
-              <a href="../pages/book-filter.html">Crime</a>
+              <a href="/books/crime">Crime</a>
             </li>
             <li>
-              <a href="../pages/book-filter.html">Drama</a>
-            </li>
-            <li>
-              <a href="../pages/book-filter.html">Fantasy</a>
-            </li>
-            <li>
-              <a href="../pages/book-filter.html">Horror</a>
+              <a href="/books/drama">Drama</a>
             </li>
           </ul>
         </div>
@@ -92,13 +86,10 @@ function Footer() {
           <h4>Quick Links</h4>
           <ul>
             <li>
-              <a href="../pages/index.html">About Us</a>
-            </li>
-            <li>
               <a href="/contact">Contact Us</a>
             </li>
             <li>
-              <a href="../pages/book-filter.html">Products</a>
+              <a href="/books">Books</a>
             </li>
             <li>
               <a href="/login">Login</a>
@@ -107,7 +98,7 @@ function Footer() {
               <a href="/registration">Sign Up</a>
             </li>
             <li>
-              <a href="../pages/cart-item.html">Cart</a>
+              <a href="/cart">Cart</a>
             </li>
             <li>
               <a href="/checkout">Checkout</a>

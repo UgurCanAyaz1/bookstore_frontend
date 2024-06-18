@@ -13,7 +13,7 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Pagination from '@mui/material/Pagination';
 
-function BooksPage() {
+function BooksActionPage() {
 
   const [data, setData] = useState([])
   const [currentPage, setCurrentPage] = useState(1)
@@ -30,10 +30,11 @@ function BooksPage() {
     }
   }
 
-  // Calculate the data to be displayed on the current page
+  // Filter and calculate the data to be displayed on the current page
+  const actionBooks = data.filter(book => book.type === "Action");
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentData = data.slice(indexOfFirstItem, indexOfLastItem);
+  const currentData = actionBooks.slice(indexOfFirstItem, indexOfFirstItem + itemsPerPage);
 
   const handlePageChange = (event, value) => {
     setCurrentPage(value);
@@ -66,7 +67,7 @@ function BooksPage() {
           }
         </Grid>
         <Pagination
-          count={Math.ceil(data.length / itemsPerPage)}
+          count={Math.ceil(actionBooks.length / itemsPerPage)}
           page={currentPage}
           onChange={handlePageChange}
           sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}
@@ -77,4 +78,4 @@ function BooksPage() {
   )
 }
 
-export default BooksPage
+export default BooksActionPage

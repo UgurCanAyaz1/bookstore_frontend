@@ -47,13 +47,10 @@ function HomeNavbar() {
             <a href="/">Home</a>
           </li>
           <li>
-            <a href="../pages/service.html">Service</a>
+            <a href="/books">Books</a>
           </li>
           <li>
-            <a href="/contact">Contact</a>
-          </li>
-          <li>
-            <a href="../pages/book-filter.html">Books</a>
+          <a href="/contact">Contact</a>
           </li>
           <button className="login">
             <a href="/login">Log In</a>
