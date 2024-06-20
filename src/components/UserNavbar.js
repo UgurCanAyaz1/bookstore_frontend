@@ -1,9 +1,14 @@
 import React from "react";
+import { useSelector } from 'react-redux';
 import "../static/css/style.css";
 import "../static/css/book-filter.css";
 import logo from "../static/images/logo.png";
 
 function UserNavbar() {
+
+  // Declaring the number of values of the cart
+  const cartCount = useSelector(state => state.cart.basketCount);
+
   return (
     <nav className="navbar-2">
       <div className="logo">
@@ -20,7 +25,8 @@ function UserNavbar() {
       <a href="/">Home</a>
 
       <div className="dropdown">
-        <button className="dropbtn">Books</button>
+        <a href="/books" className="dropbtn">Books
+        </a>
         <div className="dropdown-content">
           <a href="/books/action">Action</a>
           <a href="/books/adventure">Adventure</a>
@@ -38,7 +44,7 @@ function UserNavbar() {
         </button>
         <button className="cart">
           <a href="/cart">
-            <i className="fa-solid fa-cart-shopping" /> <span>4</span>
+            <i className="fa-solid fa-cart-shopping" /> <span>{cartCount}</span>
           </a>
         </button>
         <div className="profile-img">

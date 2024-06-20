@@ -1,13 +1,15 @@
 import React from 'react'
 import UserNavbar from '../components/UserNavbar';
-import Checkout from '../components/Cart'
 import Footer from '../components/Footer'
+import Cart from '../components/Cart';
+import CartSubtotal from '../components/CartSubtotal';
 
 function CartPage() {
   return (
     <>
     <UserNavbar/>
-    <Checkout/>
+    <Cart/>
+    <CartSubtotal/>
     <Footer/>
     </>
   )
