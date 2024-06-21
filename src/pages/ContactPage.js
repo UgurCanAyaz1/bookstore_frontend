@@ -1,12 +1,12 @@
 import React from 'react'
-import UserNavbar from '../components/UserNavbar';
+import Navbar from '../components/Navbar';
 import Footer from '../components/Footer'
 import Contact from '../components/Contact';
 
 function ContactPage() {
     return (
         <>
-        <UserNavbar/>
+        <Navbar/>
         <Contact/>
         <Footer/>
         </>

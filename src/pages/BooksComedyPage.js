@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from "axios"
 import { useDispatch } from 'react-redux';
-import UserNavbar from '../components/UserNavbar'
+import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import { addToCart } from '../store/slices/cartSlice';
 
@@ -49,7 +49,7 @@ function BooksComedyPage() {
 
   return (
     <>
-      <UserNavbar />
+      <Navbar />
       <Box sx={{ flexGrow: 1, p: 2 }}>
         <Grid container spacing={3} justifyContent="center">
           {currentData.map((book, key) => (

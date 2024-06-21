@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../store/slices/cartSlice';
-import UserNavbar from '../components/UserNavbar';
+import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
 import Card from '@mui/material/Card';
@@ -48,7 +48,7 @@ function BooksPage() {
 
   return (
     <>
-      <UserNavbar />
+      <Navbar/>
       <Box sx={{ flexGrow: 1, p: 2 }}>
         <Grid container spacing={3} justifyContent="center">
           {currentData.map((book, key) => (

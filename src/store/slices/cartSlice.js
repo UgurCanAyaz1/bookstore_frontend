@@ -12,7 +12,7 @@ const loadStateFromLocalStorage = () => {
 };
 
 const initialState = loadStateFromLocalStorage();
-console.log('Initial State:',initialState);
+console.log('Initial Cart State:',initialState);
 
 export const cartSlice = createSlice({
     name: 'cart',

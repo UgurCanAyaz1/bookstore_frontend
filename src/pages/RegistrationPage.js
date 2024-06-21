@@ -1,12 +1,12 @@
 import React from 'react'
-import UserNavbar from '../components/UserNavbar';
+import Navbar from '../components/Navbar';
 import Registration from '../components/Registration'
 import Footer from '../components/Footer'
 
 function RegistrationPage() {
     return (
         <>
-        <UserNavbar/>
+        <Navbar/>
         <Registration/>
         <Footer/>
         </>

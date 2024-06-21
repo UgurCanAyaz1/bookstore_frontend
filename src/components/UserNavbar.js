@@ -36,6 +36,7 @@ function UserNavbar() {
         </div>
       </div>
       <a href="/contact">Contact</a>
+      <a href="/">Log Out</a>
       <div className="nav-end">
         <button className="likebtn">
           <a href="/">

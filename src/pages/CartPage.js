@@ -1,5 +1,5 @@
 import React from 'react'
-import UserNavbar from '../components/UserNavbar';
+import Navbar from '../components/Navbar';
 import Footer from '../components/Footer'
 import Cart from '../components/Cart';
 import CartSubtotal from '../components/CartSubtotal';
@@ -7,7 +7,7 @@ import CartSubtotal from '../components/CartSubtotal';
 function CartPage() {
   return (
     <>
-    <UserNavbar/>
+    <Navbar/>
     <Cart/>
     <CartSubtotal/>
     <Footer/>

@@ -1,12 +1,12 @@
 import React from 'react'
 import Checkout from '../components/Checkout'
-import UserNavbar from '../components/UserNavbar';
+import Navbar from '../components/Navbar';
 import Footer from '../components/Footer'
 
 function CheckoutPage() {
   return (
     <>
-    <UserNavbar/>
+    <Navbar/>
     <Checkout/>
     <Footer/>
     </>

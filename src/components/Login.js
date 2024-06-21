@@ -3,6 +3,8 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import "../static/css/style.css";
+import { useDispatch, useSelector } from 'react-redux';
+import { SlicerLogin } from '../store/slices/userSlice';
 
 const initialValues = {
   username: '',
@@ -14,17 +16,33 @@ const validationSchema = Yup.object({
   password: Yup.string().required('Password is required'),
 });
 
-const onSubmit = async (values) => {
-  try {
-    const response = await axios.post('http://localhost:5234/api/user/LoginUser', values); // URL'yi uygun şekilde değiştirin
-    console.log(response.data);
-    // Başarılı giriş işleminden sonra yapılacaklar
-  } catch (error) {
-    console.error('Login error', error);
-  }
-};
-
 const Login = () => {
+  const dispatch = useDispatch();
+  const user = useSelector(state => state.user);
+
+  const handleLogin = (user) => {
+    dispatch(SlicerLogin(user));
+  };
+
+  const onSubmit = async (values) => {
+    try {
+      const response = await axios.post('http://localhost:5234/api/user/LoginUser', values);
+      if (response.data.authenticateResult === true) {
+
+        const user = {
+          username: values.username,
+          authToken: response.data.authToken,
+          authenticateResult: response.data.authenticateResult
+        };
+
+        // Update User state
+        handleLogin(user); 
+      }
+    } catch (error) {
+      console.error('Login error', error);
+    }
+  };
+
   return (
     <>
       <ul className="breadcrumb" style={{ listStyleType: "none", display: "flex", padding: 40, margin: 0 }}>
