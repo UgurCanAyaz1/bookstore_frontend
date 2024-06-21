@@ -7,7 +7,6 @@ import "../static/css/book-filter.css";
 
 function Cart() {
   const dispatch = useDispatch();
-  const cartCount = useSelector(state => state.cart.basketCount);
   const bookList = useSelector(state => state.cart.books);
   
   const handleAddOne = (book) => {
