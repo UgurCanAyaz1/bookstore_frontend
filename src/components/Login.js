@@ -5,6 +5,7 @@ import axios from "axios";
 import "../static/css/style.css";
 import { useDispatch, useSelector } from 'react-redux';
 import { SlicerLogin } from '../store/slices/userSlice';
+import { useNavigate } from "react-router-dom"
 
 const initialValues = {
   username: '',
@@ -17,6 +18,8 @@ const validationSchema = Yup.object({
 });
 
 const Login = () => {
+
+  const navigate = useNavigate()
   const dispatch = useDispatch();
   const user = useSelector(state => state.user);
 
@@ -37,6 +40,7 @@ const Login = () => {
 
         // Update User state
         handleLogin(user); 
+        navigate("/")
       }
     } catch (error) {
       console.error('Login error', error);

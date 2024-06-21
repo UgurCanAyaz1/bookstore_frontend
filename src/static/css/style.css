@@ -1318,6 +1318,8 @@ footer .container .list a:hover{
 .dropdown {
   position: relative;
   display: inline-block;
+  position: relative;
+  z-index: 1000; 
 }
 
 .dropdown-content {
