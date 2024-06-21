@@ -4,13 +4,16 @@ import "../static/css/book-filter.css";
 import logo from "../static/images/logo.png";
 import { SlicerLogout } from '../store/slices/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from "react-router-dom"
 
 function Navbar() {
 
   const dispatch = useDispatch();
+  const navigate = useNavigate()
 
   const handleLogOut = (user) => {
     dispatch(SlicerLogout(user));
+    navigate("/")
   };
   const user = useSelector(state => state.user);
   const authenticateResult = user.authenticateResult;

@@ -3,7 +3,10 @@ import student from "../static/images/student.png";
 import { useSelector } from 'react-redux';
 
 function capitalizeFirstLetter(string) {
-    return(string[0].toUpperCase() + string.slice(1));
+    if (typeof string !== 'string' || string.length === 0) {
+        return '';
+    }
+    return string[0].toUpperCase() + string.slice(1);
 }
 
 function WelcomeMessage() {
