@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
+import Navbar from './Navbar';
 
 function Admin() {
 
@@ -159,9 +160,24 @@ function Admin() {
     };
 
     return (
+        <>
+        <Navbar/>
         <div className='mt-5 justify-center'>
-            <div className="product-table">
-                <table cellSpacing={0}>
+
+            <div className='product-table w-full'>
+                <table className='w-full'>
+                    <thead>
+                        <tr className="heading mt-10 mb-10 w-full">
+                            <th className='w-full' style={{ border: '1px solid black', textAlign: 'center' }}>
+                                Admin Panel Summary
+                            </th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+
+            <div className="product-table mt-5">
+                <table className=" w-full" cellSpacing={0}>
                     <thead>
                         <tr className="heading mt-10">
                             <th style={{ border: '1px solid black' }}>Id</th>
@@ -177,7 +193,7 @@ function Admin() {
                     </thead>
                     <tbody>
                         {BookData.map((book, key) => (
-                            <tr className="data" key={key} style={{ border: '1px solid black', borderRadius: '10px' }}>
+                            <tr className="data" key={key} style={{ border: '1px solid black', borderRadius: '10px',  textAlignLast:'center' }}>
                                 <td style={{ border: '1px solid black' }}>{book.id}</td>
                                 <td style={{ border: '1px solid black' }}>
                                     <input
@@ -346,6 +362,7 @@ function Admin() {
                 </table>
             </div>
         </div>
+        </>
     );
 }
 

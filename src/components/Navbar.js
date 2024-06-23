@@ -11,6 +11,13 @@ function Navbar() {
   const dispatch = useDispatch();
   const navigate = useNavigate()
 
+  function capitalizeFirstLetter(string) {
+    if (typeof string !== 'string' || string.length === 0) {
+        return '';
+    }
+    return string[0].toUpperCase() + string.slice(1);
+}
+
   // Defining local function for log out using redux action 
   const handleLogOut = (user) => {
     dispatch(SlicerLogout(user));
@@ -19,6 +26,7 @@ function Navbar() {
 
   // Get state values from Redux
   const user = useSelector(state => state.user);
+  const username = capitalizeFirstLetter(user.username);
   const authenticateResult = user.authenticateResult;
   const cartCount = useSelector(state => state.cart?.basketCount || 0);
 
@@ -98,12 +106,7 @@ function Navbar() {
                       <i className="fa-solid fa-cart-shopping" /> <span>{cartCount}</span>
                     </a>
                   </button>
-                  <div className="profile-img">
-                    <img
-                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiM0o_5tIn0DAmbB2wKS4GvurHctTwxD5om2vi4NOsj1ODDSGULrviZ-QV3ul8JYEMfO0&usqp=CAU"
-                      alt=""
-                    />
-                  </div>
+                  <div className="profile-img">{username}</div>
                 </div>
               </nav>
             </>

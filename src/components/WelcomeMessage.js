@@ -1,4 +1,5 @@
 import React from "react";
+import {jwtDecode} from 'jwt-decode';
 import student from "../static/images/student.png";
 import { useSelector } from 'react-redux';
 
@@ -13,6 +14,22 @@ function WelcomeMessage() {
 
     // Getting user state from redux
     const user = useSelector(state => state.user);
+    const authToken = user.authToken;
+
+    // by decoding the jwt returning true if the user is admin
+    const isAdmin = () => {
+        if (!authToken) return false;
+        try {
+            const decodedToken = jwtDecode(authToken);
+            return decodedToken.Role === "admin";
+        } catch (error) {
+            console.error('Invalid token', error);
+            return false;
+        }
+    };
+
+    // if the user is admin, role is set to true. This is used at conditional rendering
+    const role = isAdmin();
 
     // Capitalize initial letter of the username
     const username = capitalizeFirstLetter(user.username);
@@ -40,6 +57,14 @@ function WelcomeMessage() {
                 <button>
                     <a href="/cart">Cart</a>
                 </button>
+                {
+                    role ?
+                    <button>
+                        <a href="/admin">Admin Panel</a>
+                    </button>
+                    :
+                    null
+                }
             </div>
             </>
 

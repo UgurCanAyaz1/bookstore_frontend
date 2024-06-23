@@ -14,6 +14,7 @@ function Footer() {
         rel="stylesheet"
       />
       <div className="container">
+
         <div className="logo-description">
           <div className="logo">
             <div className="img">
@@ -140,6 +141,7 @@ function Footer() {
           </ul>
         </div>
       </div>
+
     </footer>
   );
 }
