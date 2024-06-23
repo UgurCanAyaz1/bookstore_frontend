@@ -3,25 +3,32 @@ import axios from 'axios';
 import { useSelector } from 'react-redux';
 
 function Admin() {
+
+    
     const user = useSelector(state => state.user);
     const authToken = user.authToken;
-    console.log("token", authToken);
 
+    // use state for storing db book information after sending request to server
     const [BookData, setBookData] = useState([]);
+
+    // use state for adding new book. Entered data field values are stored in use state.
     const [newBook, setNewBook] = useState({
         id: '',
         image: '',
         name: '',
         author: '',
-        type: '', // Added type field
+        type: '',
         price: '',
         quantity: 0
     });
 
+    // UseEffect for listing all books that are in database
     useEffect(() => {
         getAllBooks();
     }, []);
 
+    // Function to be executed with useEffect for listing all books
+    // Received information is stored at newBook useState 
     const getAllBooks = async () => {
         try {
             let response = await axios.get('http://localhost:5234/api/Book/GetAll');
@@ -31,7 +38,9 @@ function Admin() {
         }
     };
 
+    // function to be used for increasing book quantity by 1
     const handleAddOne = (book) => {
+        // updating book use state 
         setBookData(prevData => {
             return prevData.map(b => {
                 if (b.id === book.id) {
@@ -43,6 +52,7 @@ function Admin() {
         });
     };
 
+    // function to be used for reducing book quantity by 1
     const handleRemoveOne = (book) => {
         setBookData(prevData => {
             return prevData.map(b => {
@@ -75,6 +85,7 @@ function Admin() {
         }));
     };
 
+    // Function that sends put request to server for updating book information 
     const handleSaveChanges = async (book) => {
         try {
             await axios.put(
@@ -92,6 +103,7 @@ function Admin() {
         }
     };
 
+    // Function that sends put request to server for adding new book information 
     const handleAddNewBook = async () => {
         try {
             await axios.put(
@@ -128,6 +140,7 @@ function Admin() {
         }
     };
 
+    // Function that sends delete request to server for deleting book record 
     const handleDeleteBook = async (bookId) => {
         try {
             await axios.delete(

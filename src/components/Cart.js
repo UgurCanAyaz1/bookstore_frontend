@@ -7,18 +7,26 @@ import "../static/css/book-filter.css";
 
 function Cart() {
   const dispatch = useDispatch();
+
+  // Get bookList from redux
   const bookList = useSelector(state => state.cart.books);
   
+  // Defining local function for adding one book using redux action 
   const handleAddOne = (book) => {
     dispatch(addOneBook(book));
   };
 
+  // Defining local function for removing book using redux action 
   const handleRemoveBook = (book) => {
     dispatch(removeBook(book));
   };
+
+  // Defining local function for removing one book using redux action 
   const handleRemoveOneBook = (book) => {
     dispatch(removeOneBook(book));
   };
+
+  // Defining local function for removing whole books using redux action 
   const handleRemoveBooks = () => {
     dispatch(clearCart());
   };

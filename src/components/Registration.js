@@ -4,6 +4,8 @@ import * as Yup from "yup";
 import axios from "axios";
 import "../static/css/style.css";
 
+
+// Initial values for Formik
 const initialValues = {
   username: '',
   firstname: '',
@@ -23,6 +25,8 @@ const validationSchema = Yup.object({
     .required('Confirm Password is required'),
 });
 
+// function that will be processed once form is submitted
+// function sends a put request, resulting in creating a new user with default role "user"
 const onSubmit = async (values) => {
   try {
     const response = await axios.put('http://localhost:5234/api/user/AddUser', {
@@ -33,7 +37,7 @@ const onSubmit = async (values) => {
       passwordHash: values.password,
     });
     console.log(response.data);
-    // Başarılı kayıt işleminden sonra yapılacaklar
+
   } catch (error) {
     console.error('Registration error', error);
   }
@@ -56,8 +60,14 @@ const Registration = () => {
           <h4>Create New Account</h4>
           <p>If you don't have an account with us, please create a new account.</p>
           <Formik
+
+            // Setting Initial values for Formik
             initialValues={initialValues}
+
+            // Setting Validation Schema for Formik
             validationSchema={validationSchema}
+
+            // Function that will be processed once form is submitted
             onSubmit={onSubmit}
           >
             <Form className="input-form">

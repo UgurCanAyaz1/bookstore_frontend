@@ -11,7 +11,10 @@ function capitalizeFirstLetter(string) {
 
 function WelcomeMessage() {
 
+    // Getting user state from redux
     const user = useSelector(state => state.user);
+
+    // Capitalize initial letter of the username
     const username = capitalizeFirstLetter(user.username);
 
     return (
@@ -20,9 +23,11 @@ function WelcomeMessage() {
             <div className="content">
             <small>Website of  Our Bookstore</small>
             <h2>Welcome! {username}</h2>
+
+            {/* Conditional Rendering of the username */}
+            {/* If username exists show books and cart endpoints */}
             {
             username ?
-
             <>
             <p>
                 To See Our Available Books Please Continue with the Buttons Below
@@ -38,7 +43,7 @@ function WelcomeMessage() {
             </div>
             </>
 
-
+            // If username does not exist, show login and sign up endpoints
             :
             <>
             <p>

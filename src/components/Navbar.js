@@ -11,10 +11,13 @@ function Navbar() {
   const dispatch = useDispatch();
   const navigate = useNavigate()
 
+  // Defining local function for log out using redux action 
   const handleLogOut = (user) => {
     dispatch(SlicerLogout(user));
     navigate("/")
   };
+
+  // Get state values from Redux
   const user = useSelector(state => state.user);
   const authenticateResult = user.authenticateResult;
   const cartCount = useSelector(state => state.cart?.basketCount || 0);
@@ -76,6 +79,8 @@ function Navbar() {
           <li>
             <a href="/contact">Contact</a>
           </li>
+
+          {/* Conditional rendering, if authenticateResult is true show cart etc. Else show Login etc */}
           {authenticateResult ? (
             <>
               <li>

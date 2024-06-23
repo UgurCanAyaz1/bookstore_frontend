@@ -5,7 +5,8 @@ import { useSelector } from 'react-redux';
 
 function CartSubtotal() {
 
-    const totalAmount = useSelector(state => state.cart.totalAmount);
+  // Get total amount state from redux
+  const totalAmount = useSelector(state => state.cart.totalAmount);
 
   return (
     <section className="discount-summary">

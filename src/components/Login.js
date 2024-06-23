@@ -23,6 +23,7 @@ const Login = () => {
   const dispatch = useDispatch();
   const user = useSelector(state => state.user);
 
+  // Defining local function for login using redux action 
   const handleLogin = (user) => {
     dispatch(SlicerLogin(user));
   };
@@ -30,6 +31,8 @@ const Login = () => {
   const onSubmit = async (values) => {
     try {
       const response = await axios.post('http://localhost:5234/api/user/LoginUser', values);
+
+      // If authentication request is true, update user state and navigate user to home page
       if (response.data.authenticateResult === true) {
 
         const user = {
@@ -38,8 +41,10 @@ const Login = () => {
           authenticateResult: response.data.authenticateResult
         };
 
-        // Update User state
+        // Update User state and save updated user state to local storage
         handleLogin(user); 
+
+      // Navigate user to home page after successful login 
         navigate("/")
       }
     } catch (error) {
