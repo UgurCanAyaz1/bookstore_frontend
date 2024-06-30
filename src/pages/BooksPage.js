@@ -49,7 +49,7 @@ function BooksPage() {
   return (
     <>
       <Navbar/>
-      <Box sx={{ flexGrow: 1, p: 2 }}>
+      <Box  sx={{ flexGrow: 1, p: 2 }}>
         <Grid container spacing={3} justifyContent="center">
           {currentData.map((book, key) => (
             <Grid item xs={12} sm={6} md={4} key={key}>

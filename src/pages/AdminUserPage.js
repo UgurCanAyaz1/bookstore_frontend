@@ -2,9 +2,10 @@ import React, { useEffect } from 'react';
 import {jwtDecode} from 'jwt-decode';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import AdminUserTable from '../components/AdminUserTable';
 import AdminSidebar from '../components/AdminSidebar';
 
-function AdminPage() {
+function AdminUserPage() {
     const navigate = useNavigate();
     const user = useSelector(state => state.user);
     const authToken = user.authToken;
@@ -29,28 +30,13 @@ function AdminPage() {
     }, [role, navigate]);
 
     return (
-        
         role ? (
-        <>
         <div style={{display: "flex"}}>
             <AdminSidebar/>
-            <div className='product-table w-full'>
-                <table className='w-full'>
-                    <thead>
-                        <tr className="mt-10 mb-10 w-full" style={{backgroundColor:'orange'}}>
-                            <th className='w-full' style={{ border: '1px solid black', textAlign: 'center' }}>
-                                Welcome to Admin Page, Please Use Sidebar on the Left to do User or Book Specific Actions
-                            </th>
-                        </tr>
-                    </thead>
-                </table>
-            </div>
+            <AdminUserTable/>
         </div>
-        </>
-
-        
     ) : null
     );
 }
 
-export default AdminPage;
+export default AdminUserPage;

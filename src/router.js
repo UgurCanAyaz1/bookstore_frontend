@@ -13,6 +13,8 @@ import BooksComedyPage from "./pages/BooksComedyPage"
 import BooksCrimePage from "./pages/BooksCrimePage"
 import BooksDramaPage from "./pages/BooksDramaPage"
 import AdminPage from "./pages/AdminPage"
+import AdminBookPage from "./pages/AdminBookPage"
+import AdminUserPage from "./pages/AdminUserPage"
 import UnauthorizedPage from "./pages/UnauthorizedPage"
 
 const router = createBrowserRouter([
@@ -67,6 +69,14 @@ const router = createBrowserRouter([
     {
         path: "/Admin",
         element: <AdminPage/>
+    },
+    {
+        path: "/Admin/Book",
+        element: <AdminBookPage/>
+    },
+    {
+        path: "/Admin/User",
+        element: <AdminUserPage/>
     },
     {
         path: "/Unauthorized",

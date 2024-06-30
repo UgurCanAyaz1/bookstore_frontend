@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
-import Navbar from './Navbar';
 
-function Admin() {
+
+function AdminBookTable() {
 
     
     const user = useSelector(state => state.user);
@@ -160,23 +160,22 @@ function Admin() {
     };
 
     return (
-        <>
-        <Navbar/>
-        <div className='mt-5 justify-center'>
+        <div className='' style={{display: "flex"}}>
+        <div className=' justify-center'>
 
             <div className='product-table w-full'>
                 <table className='w-full'>
                     <thead>
-                        <tr className="heading mt-10 mb-10 w-full">
+                        <tr className="mt-10 mb-10 w-full" style={{backgroundColor:'orange'}}>
                             <th className='w-full' style={{ border: '1px solid black', textAlign: 'center' }}>
-                                Admin Panel Summary
+                                Please Make Corresponding Adjustments and then Either Save or Delete the Record
                             </th>
                         </tr>
                     </thead>
                 </table>
             </div>
 
-            <div className="product-table mt-5">
+            <div className="product-table">
                 <table className=" w-full" cellSpacing={0}>
                     <thead>
                         <tr className="heading mt-10">
@@ -187,91 +186,12 @@ function Admin() {
                             <th style={{ border: '1px solid black' }}>Type</th>
                             <th style={{ border: '1px solid black' }}>Unit Price</th>
                             <th style={{ border: '1px solid black' }}>Stock</th>
-                            <th style={{ border: '1px solid black' }}>Save Changes</th>
+                            <th style={{ border: '1px solid black' }}>Save Changes/Add Book</th>
                             <th style={{ border: '1px solid black' }}>Delete Book</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {BookData.map((book, key) => (
-                            <tr className="data" key={key} style={{ border: '1px solid black', borderRadius: '10px',  textAlignLast:'center' }}>
-                                <td style={{ border: '1px solid black' }}>{book.id}</td>
-                                <td style={{ border: '1px solid black' }}>
-                                    <input
-                                        type="text"
-                                        value={book.image}
-                                        onChange={(e) => handleInputChange(book.id, 'image', e.target.value)}
-                                        style={{ width: "30.5rem" }}
-                                    />
-                                </td>
-                                <td style={{ border: '1px solid black' }}>
-                                    <input
-                                        type="text"
-                                        value={book.name}
-                                        onChange={(e) => handleInputChange(book.id, 'name', e.target.value)}
-                                        style={{ width: "10.5rem" }}
-                                    />
-                                </td>
-                                <td style={{ border: '1px solid black' }}>
-                                    <input
-                                        type="text"
-                                        value={book.author}
-                                        onChange={(e) => handleInputChange(book.id, 'author', e.target.value)}
-                                        style={{ width: "10.5rem" }}
-                                    />
-                                </td>
-                                <td style={{ border: '1px solid black' }}>
-                                    <input
-                                        type="text"
-                                        value={book.type}
-                                        onChange={(e) => handleInputChange(book.id, 'type', e.target.value)}
-                                        style={{ width: "10.5rem" }}
-                                    />
-                                </td>
-                                <td style={{ border: '1px solid black' }}>
-                                    <input
-                                        type="text"
-                                        value={book.price}
-                                        onChange={(e) => handleInputChange(book.id, 'price', e.target.value)}
-                                        style={{ width: "3.5rem" }}
-                                    />
-                                </td>
-                                <td style={{ border: '1px solid black' }}>
-                                    <div className="input-group">
-                                        <div className="quantity">
-                                            <input
-                                                type="button"
-                                                value="-"
-                                                className="button-minus"
-                                                onClick={() => handleRemoveOne(book)}
-                                            />
-                                            <input
-                                                type="text"
-                                                step={1}
-                                                min={1}
-                                                value={book.quantity}
-                                                name="quantity"
-                                                className="quantity-field"
-                                                readOnly
-                                                style={{ width: "3.5rem" }}
-                                            />
-                                            <input
-                                                type="button"
-                                                value="+"
-                                                className="button-plus"
-                                                onClick={() => handleAddOne(book)}
-                                            />
-                                        </div>
-                                    </div>
-                                </td>
-                                <td style={{ border: '1px solid black' }}>
-                                    <button onClick={() => handleSaveChanges(book)}>Save Changes</button>
-                                </td>
-                                <td style={{ border: '1px solid black' }}>
-                                    <button onClick={() => handleDeleteBook(book.id)}>Delete Book</button>
-                                </td>
-                            </tr>
-                        ))}
-                        <tr className="data" style={{ border: '1px solid black', borderRadius: '10px' }}>
+                    <tr className="data" style={{ border: '1px solid black', borderRadius: '10px',  textAlignLast:'center'  }}>
                             <td style={{ border: '1px solid black' }}>
                                 <input
                                     type="text"
@@ -358,12 +278,91 @@ function Admin() {
                                 <button onClick={handleAddNewBook}>Add Book</button>
                             </td>
                         </tr>
+                        {BookData.map((book, key) => (
+                            <tr className="data" key={key} style={{ border: '1px solid black', borderRadius: '10px',  textAlignLast:'center' }}>
+                                <td style={{ border: '1px solid black' }}>{book.id}</td>
+                                <td style={{ border: '1px solid black' }}>
+                                    <input
+                                        type="text"
+                                        value={book.image}
+                                        onChange={(e) => handleInputChange(book.id, 'image', e.target.value)}
+                                        style={{ width: "30.5rem" }}
+                                    />
+                                </td>
+                                <td style={{ border: '1px solid black' }}>
+                                    <input
+                                        type="text"
+                                        value={book.name}
+                                        onChange={(e) => handleInputChange(book.id, 'name', e.target.value)}
+                                        style={{ width: "10.5rem" }}
+                                    />
+                                </td>
+                                <td style={{ border: '1px solid black' }}>
+                                    <input
+                                        type="text"
+                                        value={book.author}
+                                        onChange={(e) => handleInputChange(book.id, 'author', e.target.value)}
+                                        style={{ width: "10.5rem" }}
+                                    />
+                                </td>
+                                <td style={{ border: '1px solid black' }}>
+                                    <input
+                                        type="text"
+                                        value={book.type}
+                                        onChange={(e) => handleInputChange(book.id, 'type', e.target.value)}
+                                        style={{ width: "10.5rem" }}
+                                    />
+                                </td>
+                                <td style={{ border: '1px solid black' }}>
+                                    <input
+                                        type="text"
+                                        value={book.price}
+                                        onChange={(e) => handleInputChange(book.id, 'price', e.target.value)}
+                                        style={{ width: "3.5rem" }}
+                                    />
+                                </td>
+                                <td style={{ border: '1px solid black' }}>
+                                    <div className="input-group">
+                                        <div className="quantity">
+                                            <input
+                                                type="button"
+                                                value="-"
+                                                className="button-minus"
+                                                onClick={() => handleRemoveOne(book)}
+                                            />
+                                            <input
+                                                type="text"
+                                                step={1}
+                                                min={1}
+                                                value={book.quantity}
+                                                name="quantity"
+                                                className="quantity-field"
+                                                readOnly
+                                                style={{ width: "3.5rem" }}
+                                            />
+                                            <input
+                                                type="button"
+                                                value="+"
+                                                className="button-plus"
+                                                onClick={() => handleAddOne(book)}
+                                            />
+                                        </div>
+                                    </div>
+                                </td>
+                                <td style={{ border: '1px solid black' }}>
+                                    <button onClick={() => handleSaveChanges(book)}>Save Changes</button>
+                                </td>
+                                <td style={{ border: '1px solid black' }}>
+                                    <button onClick={() => handleDeleteBook(book.id)}>Delete Book</button>
+                                </td>
+                            </tr>
+                        ))}
                     </tbody>
                 </table>
             </div>
         </div>
-        </>
+    </div>
     );
 }
 
-export default Admin;
+export default AdminBookTable;
