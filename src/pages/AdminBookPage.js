@@ -31,7 +31,7 @@ function AdminBookPage() {
 
     return (
         role ? (
-        <div style={{display: "flex"}}>
+        <div style={{display: "flex" }}>
             <AdminSidebar/>
             <AdminBookTable/>
         </div>

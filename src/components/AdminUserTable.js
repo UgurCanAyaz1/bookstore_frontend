@@ -122,7 +122,7 @@ function AdminBookTable() {
     };
 
     return (
-        <div className='' style={{ display: 'flex' }}>
+        <div className='' style={{ display: 'flex', width:"90vw" }}>
             <div className=' justify-center'>
                 <div className='product-table w-full'>
                     <table className='w-full'>

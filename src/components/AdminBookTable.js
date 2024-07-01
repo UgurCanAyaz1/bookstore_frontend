@@ -153,27 +153,26 @@ function AdminBookTable() {
                 }
             );
             alert('Book deleted successfully');
-            getAllBooks(); // Refresh the book list
+            getAllBooks();
         } catch (error) {
             console.log('Delete Book Error', error);
         }
     };
 
     return (
-        <div className='' style={{display: "flex"}}>
-        <div className=' justify-center'>
-
-            <div className='product-table w-full'>
-                <table className='w-full'>
-                    <thead>
-                        <tr className="mt-10 mb-10 w-full" style={{backgroundColor:'orange'}}>
-                            <th className='w-full' style={{ border: '1px solid black', textAlign: 'center' }}>
-                                Please Make Corresponding Adjustments and then Either Save or Delete the Record
-                            </th>
-                        </tr>
-                    </thead>
-                </table>
-            </div>
+        <div className='' style={{display: "flex", width:"90vw"}}>
+            <div className=' justify-center'>
+                <div className='product-table w-full'>
+                    <table className='w-full'>
+                        <thead>
+                            <tr className="mt-10 mb-10 w-full" style={{backgroundColor:'orange'}}>
+                                <th className='w-full' style={{ border: '1px solid black', textAlign: 'center' }}>
+                                    Please Make Corresponding Adjustments and then Either Save or Delete the Record
+                                </th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
 
             <div className="product-table">
                 <table className=" w-full" cellSpacing={0}>

@@ -29,27 +29,29 @@ function AdminPage() {
     }, [role, navigate]);
 
     return (
-        
         role ? (
-        <>
-        <div style={{display: "flex"}}>
-            <AdminSidebar/>
-            <div className='product-table w-full'>
-                <table className='w-full'>
-                    <thead>
-                        <tr className="mt-10 mb-10 w-full" style={{backgroundColor:'orange'}}>
-                            <th className='w-full' style={{ border: '1px solid black', textAlign: 'center' }}>
-                                Welcome to Admin Page, Please Use Sidebar on the Left to do User or Book Specific Actions
-                            </th>
-                        </tr>
-                    </thead>
-                </table>
+            <div style={{ display: "flex", height: "100vh" }}>
+                <AdminSidebar />
+                <div className='product-table w-full h-full' style={{ height: "100%" }}>
+                    <table className='w-full'>
+                        <thead>
+                            <tr className="mt-10 mb-10 w-full" style={{ backgroundColor: 'orange' }}>
+                                <th className='w-full' style={{ border: '1px solid black', textAlign: 'center' }}>
+                                    Welcome to Admin Page, Please Use Sidebar on the Left to do User or Book Specific Actions
+                                </th>
+                            </tr>
+                        </thead>
+                    </table>
+                    <iframe
+                        title='title' 
+                        style={{ width: "100%", height: "100%" }} 
+                        src="https://giphy.com/embed/llNyEwZQOJj6tZhhIB"
+                        frameBorder="0"
+                        allowFullScreen
+                    />
+                </div>
             </div>
-        </div>
-        </>
-
-        
-    ) : null
+        ) : null
     );
 }
 
