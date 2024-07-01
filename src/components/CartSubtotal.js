@@ -17,7 +17,7 @@ function CartSubtotal() {
             <tbody>
               <tr>
                 <td>Order Subtotal</td>
-                <td>${totalAmount}</td>
+                <td>₺{totalAmount}</td>
               </tr>
               <tr>
                 <td>Shipping</td>
@@ -25,7 +25,7 @@ function CartSubtotal() {
               </tr>
               <tr>
                 <td>Total</td>
-                <td>${totalAmount}</td>
+                <td>₺{totalAmount}</td>
               </tr>
             </tbody>
           </table>

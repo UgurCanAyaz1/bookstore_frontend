@@ -4,6 +4,8 @@ import { useDispatch } from 'react-redux';
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import { addToCart } from '../store/slices/cartSlice';
+import { getdetailId } from '../store/slices/detailSlice';
+import { useNavigate } from "react-router-dom";
 
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -23,6 +25,7 @@ function BooksComedyPage() {
   const [currentPage, setCurrentPage] = useState(1)
   const itemsPerPage = 15
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => { getAllBooks() }, [])
   
@@ -47,6 +50,12 @@ function BooksComedyPage() {
 
   const handleAddToCart = (book) => {dispatch(addToCart(book));};
 
+  const handleDetail = (bookid) => {;
+    dispatch(getdetailId(bookid));
+    navigate("/Book/Detail");
+    window.location.reload();
+  };
+
   return (
     <>
       <Navbar />
@@ -67,6 +76,7 @@ function BooksComedyPage() {
                 </CardContent>
                 <CardActions>
                   <Button size="small">Favorilere Ekle</Button>
+                  <Button size="small" onClick={() => handleDetail(book.id)} >Detaylara Git</Button>
                   <Button size="small" onClick={() => handleAddToCart(book)}>Sepete Ekle</Button>
                 </CardActions>
               </Card>

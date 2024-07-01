@@ -16,6 +16,7 @@ import AdminPage from "./pages/AdminPage"
 import AdminBookPage from "./pages/AdminBookPage"
 import AdminUserPage from "./pages/AdminUserPage"
 import UnauthorizedPage from "./pages/UnauthorizedPage"
+import BookDetailPage from "./pages/BookDetailPage"
 
 const router = createBrowserRouter([
     {
@@ -81,6 +82,10 @@ const router = createBrowserRouter([
     {
         path: "/Unauthorized",
         element: <UnauthorizedPage/>
+    },
+    {
+        path: "/Book/Detail",
+        element: <BookDetailPage/>
     },
     {
         path: "*",

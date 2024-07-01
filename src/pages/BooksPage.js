@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../store/slices/cartSlice';
+import { getdetailId } from '../store/slices/detailSlice';
+import { useNavigate } from "react-router-dom";
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
@@ -16,10 +18,13 @@ import Box from '@mui/material/Box';
 import Pagination from '@mui/material/Pagination';
 
 function BooksPage() {
+
   const [BookData, setBookData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 15;
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
 
   useEffect(() => {
     getAllBooks();
@@ -43,8 +48,13 @@ function BooksPage() {
   };
 
   // Setting functions to be dispatched
-  // const handleAddToCart = () => {dispatch(addToCart());};
   const handleAddToCart = (book) => {dispatch(addToCart(book));};
+
+  const handleDetail = (bookid) => {;
+    dispatch(getdetailId(bookid));
+    navigate("/Book/Detail");
+    window.location.reload();
+  };
 
   return (
     <>
@@ -60,13 +70,17 @@ function BooksPage() {
                     {book.name}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
-                    <h3>Fiyatı {book.price} TL</h3>
-                    <h3>Stok Durumu {book.quantity}</h3>
+                    <div>
+                    <strong>Fiyatı {book.price} TL</strong>
+                    </div>
+                    
+                    <strong>Stok Durumu {book.quantity}</strong>
                   </Typography>
                 </CardContent>
                 <CardActions>
                   <Button size="small">Favorilere Ekle</Button>
-                  <Button size="small" onClick={() => handleAddToCart(book)}>Sepete Ekle</Button>
+                  <Button size="small" onClick={() => handleDetail(book.id)} >Detaylara Git</Button>
+                  <Button size="small" onClick={() => handleAddToCart(book.id)}>Sepete Ekle</Button>
                 </CardActions>
               </Card>
             </Grid>

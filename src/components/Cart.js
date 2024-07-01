@@ -47,7 +47,7 @@ function Cart() {
             {bookList.map((book, key) => (
               <tr className="data" key={key}>
                 <td>{book.name}</td>
-                <td>${book.price}</td>
+                <td>₺{book.price}</td>
                 <td>
                   <div className="input-group">
                     <div className="quantity">

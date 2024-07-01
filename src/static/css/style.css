@@ -1343,3 +1343,19 @@ footer .container .list a:hover{
 .dropdown:hover .dropdown-content {display: block;}
 
 .dropdown:hover .dropbtn {background-color: #6c5dd4;}
+
+.search-field {
+  position: relative; /* Ensure relative positioning */
+}
+
+.search-results {
+  position: absolute;
+  top: 100%; /* Position below the input */
+  left: 0;
+  background-color: #fff; /* Adjust styling as needed */
+  z-index: 1000; /* Ensure higher than other elements */
+  border: 1px solid #ccc;
+  max-height: 200px; /* Limit height if needed */
+  overflow-y: auto; /* Enable scrolling if results exceed max height */
+  width: 100%; /* Match input width */
+}
