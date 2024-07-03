@@ -48,7 +48,7 @@ function BooksPage() {
   };
 
   // Setting functions to be dispatched
-  const handleAddToCart = (book) => {dispatch(addToCart(book));};
+  const handleAddToCart = (book) => { dispatch(addToCart(book)); };
 
   const handleDetail = (bookid) => {;
     dispatch(getdetailId(bookid));
@@ -71,16 +71,15 @@ function BooksPage() {
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
                     <div>
-                    <strong>Fiyatı {book.price} TL</strong>
+                      <strong>Fiyatı {book.price} TL</strong>
                     </div>
-                    
                     <strong>Stok Durumu {book.quantity}</strong>
                   </Typography>
                 </CardContent>
                 <CardActions>
                   <Button size="small">Favorilere Ekle</Button>
                   <Button size="small" onClick={() => handleDetail(book.id)} >Detaylara Git</Button>
-                  <Button size="small" onClick={() => handleAddToCart(book.id)}>Sepete Ekle</Button>
+                  <Button size="small" onClick={() => handleAddToCart(book)}>Sepete Ekle</Button>
                 </CardActions>
               </Card>
             </Grid>
