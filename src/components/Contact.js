@@ -28,41 +28,22 @@ function Contact() {
             />
           </div>
           <div className="contact-form">
-            <h4>Contact Us</h4>
-            <p>Get in touch with us</p>
-            <div className="input-form">
-              <div className="input-field">
-                <label htmlFor="name">Full Name *</label>
-                <input type="text" name="" id="name" placeholder="Full Name" />
-              </div>
-              <div className="input-field">
-                <label htmlFor="email">E-mail *</label>
-                <input
-                  type="email"
-                  name=""
-                  id="email"
-                  placeholder="Email Address"
-                />
-              </div>
-              <div className="input-field">
-                <label htmlFor="phone">Phone No. *</label>
-                <input
-                  type="text"
-                  name=""
-                  id="phone"
-                  placeholder="Phone Number"
-                />
-              </div>
-              <div className="message">
-                <label htmlFor="message">Message *</label>
-                <textarea
-                  placeholder="Message"
-                  id="message"
-                  defaultValue={""}
-                />
-              </div>
-              <button>submit</button>
-            </div>
+            <h3 className="mb-2">Contact Information</h3>
+              <h2 className="mb-4">Feel free to contact us via information provided below </h2>
+            <ul>
+            <li className="mt-2">
+                <i className="fa-solid fa-location-dot mr-5" />
+                832 Thompson Drive,San Fransisco CA 94 107,United States
+            </li>
+            <li className="mt-2">
+                <i className="fa-solid fa-phone mr-5" />
+                +12 1345678991
+            </li>
+            <li className="mt-2">
+                <i className="fa-solid fa-envelope mr-5" />
+                support@bookoe.id
+            </li>
+          </ul>
           </div>
         </div>
       </section>

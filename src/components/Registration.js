@@ -15,11 +15,21 @@ const initialValues = {
 };
 
 const validationSchema = Yup.object({
-  username: Yup.string().required('Username is required'),
-  firstname: Yup.string().required('First name is required'),
-  lastname: Yup.string().required('Last name is required'),
-  email: Yup.string().email('Invalid email format').required('Email is required'),
-  password: Yup.string().required('Password is required'),
+  username: Yup.string()
+    .matches(/^[a-zA-Z0-9_]*$/, 'Username should not contain special characters')
+    .required('Username is required'),
+  firstname: Yup.string()
+    .matches(/^[a-zA-Z]*$/, 'First name should only contain letters')
+    .required('First name is required'),
+  lastname: Yup.string()
+    .matches(/^[a-zA-Z]*$/, 'Last name should only contain letters')
+    .required('Last name is required'),
+  email: Yup.string()
+    .email('Invalid email format')
+    .required('Email is required'),
+  password: Yup.string()
+    .matches(/^[a-zA-Z0-9]*$/, 'Password should not contain special characters')
+    .required('Password is required'),
   confirmPassword: Yup.string()
     .oneOf([Yup.ref('password'), ''], 'Passwords must match')
     .required('Confirm Password is required'),

@@ -6,6 +6,7 @@ import { getdetailId } from '../store/slices/detailSlice';
 import { useNavigate } from "react-router-dom";
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import { addToFav  } from '../store/slices/favSlice';
 
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -56,6 +57,10 @@ function BooksPage() {
     window.location.reload();
   };
 
+  const handleAddToFav = (book) => {
+    dispatch(addToFav(book));
+  };
+
   return (
     <>
       <Navbar/>
@@ -70,16 +75,14 @@ function BooksPage() {
                     {book.name}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
-                    <div>
-                      <strong>Fiyatı {book.price} TL</strong>
-                    </div>
-                    <strong>Stok Durumu {book.quantity}</strong>
+                    <h3>Price:  {book.price} TL</h3>
+                    <h3>Stock Quantity:  {book.quantity}</h3>
                   </Typography>
                 </CardContent>
                 <CardActions>
-                  <Button size="small">Favorilere Ekle</Button>
-                  <Button size="small" onClick={() => handleDetail(book.id)} >Detaylara Git</Button>
-                  <Button size="small" onClick={() => handleAddToCart(book)}>Sepete Ekle</Button>
+                  <Button size="small" onClick={() => handleAddToFav(book)}>Add To Favorites</Button>
+                  <Button size="small" onClick={() => handleDetail(book.id)} >Go to Details</Button>
+                  <Button size="small" onClick={() => handleAddToCart(book)}>Add To Cart</Button>
                 </CardActions>
               </Card>
             </Grid>

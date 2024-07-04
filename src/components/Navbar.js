@@ -21,6 +21,8 @@ function Navbar() {
   // useState for holding search input data
   const [searchTerm, setSearchTerm] = useState("");
 
+  const favCount = useSelector(state => state.fav.favCount);
+
   // UseEffects
 
   // UseEffect for getting all books
@@ -163,8 +165,8 @@ function Navbar() {
               <nav className="navbar-2">
                 <div className="nav-end">
                   <button className="likebtn">
-                    <a href="/">
-                      <i className="fa-regular fa-heart" /> <span>35</span>
+                    <a href="/fav">
+                      <i className="fa-regular fa-heart" /> <span>{favCount}</span>
                     </a>
                   </button>
                   <button className="cart">
