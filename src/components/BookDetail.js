@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../store/slices/cartSlice';
+import { addToFav  } from '../store/slices/favSlice';
 import { addOneBook,removeOneBook } from '../store/slices/cartSlice';
 import axios from 'axios';
 
@@ -51,6 +52,8 @@ function BookDetail() {
 
   const handleAddOne = (book) => {dispatch(addOneBook(book));};
 
+  const handleAddToFav = (book) => {dispatch(addToFav(book));};
+
 
   return (
     <section className="book-overview">
@@ -99,7 +102,8 @@ function BookDetail() {
               <i className="fa-solid fa-cart-shopping" />
               Add to Cart
             </button>
-            <button className="like">
+            <button className="like"
+            onClick={() => { handleAddToFav (BookData) }}>
               <i className="fa-regular fa-heart" />
             </button>
           </div>
