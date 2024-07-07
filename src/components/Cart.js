@@ -17,15 +17,14 @@ function Cart() {
 
   const handleAddOne = (book) => {
     dispatch(addOneBook(book));
-    if (book.quantity>book.cartQuantity){
+    if (book.quantity > book.cartQuantity) {
       toast.success(`The quantity of "${book.name}" is increased!`);
     }
   };
 
   const handleRemoveOneBook = (book) => {
     dispatch(removeOneBook(book));
-    console.log(book)
-    if (book.cartQuantity>0){
+    if (book.cartQuantity > 0) {
       toast.info(`The quantity of "${book.name}" is decreased!`);
     }
   };
@@ -112,8 +111,8 @@ function Cart() {
       <section className="discount-summary">
         <div className="summary-section">
           <div className="order-detail-table" style={{ display: "grid" }}>
-            <button className="order-detail-table">
-              <a onClick={handleRemoveBooks}>Clear Cart</a>
+            <button className="order-detail-table" onClick={handleRemoveBooks}>
+              Clear Cart
             </button>
           </div>
         </div>
@@ -126,8 +125,11 @@ function Cart() {
         onClickYes={confirmRemoveBook}
       />
       <ToastContainer 
-      position="top-center" 
-      autoClose={2000}
+        position="top-center" 
+        autoClose={2000}
+        draggable={false}
+        pauseOnHover={false}
+        containerId="containerB"
       />
     </section>
   );

@@ -3,6 +3,9 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import "../static/css/style.css";
+import { useNavigate } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 // Initial values for Formik
@@ -35,25 +38,38 @@ const validationSchema = Yup.object({
     .required('Confirm Password is required'),
 });
 
-// function that will be processed once form is submitted
-// function sends a put request, resulting in creating a new user with default role "user"
-const onSubmit = async (values) => {
-  try {
-    const response = await axios.put('http://localhost:5234/api/user/AddUser', {
-      firstName: values.firstname,
-      lastName: values.lastname,
-      userName: values.username,
-      emailAddress: values.email,
-      passwordHash: values.password,
-    });
-    console.log(response.data);
-
-  } catch (error) {
-    console.error('Registration error', error);
-  }
-};
 
 const Registration = () => {
+
+  const navigate = useNavigate();
+
+  // function that will be processed once form is submitted
+  // function sends a put request, resulting in creating a new user with default role "user"
+  const onSubmit = async (values) => {
+    try {
+      const response = await axios.put('http://localhost:5234/api/user/AddUser', {
+        firstName: values.firstname,
+        lastName: values.lastname,
+        userName: values.username,
+        emailAddress: values.email,
+        passwordHash: values.password,
+      });
+      console.log(response.data);
+
+      // Show success toast notification
+      toast.success('Registration Successful! Redirecting to Login Page in 5 seconds.');
+
+      // Start the timeout after a successful payment
+      setTimeout(() => {
+        navigate("/login");
+      }, 5000); 
+
+    } catch (error) {
+      console.error('Registration error', error);
+    }
+  };
+
+
   return (
     <>
       <ul className="breadcrumb" style={{ listStyleType: "none", display: "flex", padding: 40, margin: 0 }}>
@@ -124,6 +140,13 @@ const Registration = () => {
           </Formik>
         </div>
       </section>
+      <ToastContainer 
+        position="top-center" 
+        autoClose={2000}
+        draggable={false}
+        pauseOnHover={false}
+        containerId="containerB"
+      />
     </>
   );
 };

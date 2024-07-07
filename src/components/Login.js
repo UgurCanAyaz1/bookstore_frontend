@@ -3,7 +3,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import "../static/css/style.css";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { SlicerLogin } from '../store/slices/userSlice';
 import { useNavigate } from "react-router-dom"
 import { toast, ToastContainer } from 'react-toastify';
@@ -23,7 +23,6 @@ const Login = () => {
 
   const navigate = useNavigate()
   const dispatch = useDispatch();
-  const user = useSelector(state => state.user);
 
   // Defining local function for login using redux action 
   const handleLogin = (user) => {
@@ -115,10 +114,13 @@ const Login = () => {
             </Form>
           </Formik>
         </div>
-          <ToastContainer 
+        <ToastContainer 
         position="top-center" 
-        autoClose={4000}
-        />
+        autoClose={2000}
+        draggable={false}
+        pauseOnHover={false}
+        containerId="containerB"
+      />
       </section>
     </>
   );

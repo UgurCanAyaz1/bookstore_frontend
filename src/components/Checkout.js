@@ -22,7 +22,6 @@ const CheckoutForm = () => {
 
   const [error, setError] = useState(null);
   const [processing, setProcessing] = useState(false);
-  const [paymentResult, setPaymentResult] = useState(null);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -60,8 +59,6 @@ const CheckoutForm = () => {
         if (!response.ok) {
           throw new Error(responseData.error || 'Payment failed');
         }
-  
-        setPaymentResult(responseData);
 
         // Show success toast notification
         toast.success('Payment Successful! Redirecting to Home Page in 5 seconds.');
@@ -148,8 +145,11 @@ const CheckoutForm = () => {
             </button>
           </form>
           <ToastContainer 
-        position="top-center" 
-        autoClose={4000}
+          position="top-center" 
+          autoClose={2000}
+          draggable={false}
+          pauseOnHover={false}
+          containerId="containerB"
         />
         </div>
       </section>
