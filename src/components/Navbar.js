@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { getdetailId } from '../store/slices/detailSlice';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Navbar() {
 
@@ -53,8 +55,19 @@ function Navbar() {
 
   // Defining local function for log out using redux action 
   const handleLogOut = (user) => {
+
     dispatch(SlicerLogout(user));
-    navigate("/");
+    toast.success(
+      <>
+        You have logged out successfully!
+      </>
+    );
+
+    setTimeout(() => {
+      // Navigate user to home page after successful log out 
+      navigate("/")
+    }, 4000); 
+
   };
 
   // Defining local function for storing the search's book id 
@@ -195,6 +208,11 @@ function Navbar() {
           <div className="line" />
         </div>
       </nav>
+      <ToastContainer 
+        position="top-center" 
+        autoClose={4000}
+        />
+      
     </header>
   );
 }

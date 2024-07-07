@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements, CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import { clearCart } from '../store/slices/cartSlice';
 import { useNavigate } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const stripePromise = loadStripe("pk_test_TYooMQauvdEDq54NiTphI7jx");
 
@@ -48,7 +50,6 @@ const CheckoutForm = () => {
           body: JSON.stringify({
             paymentMethodId: paymentMethod.id,
             amount: totalAmount,
-
             // Example test account for showing the handling of the process. 
             stripeAccountId: 'acct_1Nv0FGQ9RKHgCVdK'
           }),
@@ -61,6 +62,9 @@ const CheckoutForm = () => {
         }
   
         setPaymentResult(responseData);
+
+        // Show success toast notification
+        toast.success('Payment Successful! Redirecting to Home Page in 5 seconds.');
 
         // Start the timeout after a successful payment
         setTimeout(() => {
@@ -142,14 +146,11 @@ const CheckoutForm = () => {
             <button type="submit" disabled={!stripe || processing}>
               {processing ? 'Processing...' : 'Place Order Now'}
             </button>
-            {paymentResult ?
-            <>
-            <div>Payment Successful!</div>
-            <div>Redirecting to Home Page in 5 seconds!</div>
-            </>:
-            null
-            }
           </form>
+          <ToastContainer 
+        position="top-center" 
+        autoClose={4000}
+        />
         </div>
       </section>
     </>

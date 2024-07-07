@@ -1,34 +1,52 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { clearCart, removeBook, addOneBook,removeOneBook } from '../store/slices/cartSlice';
+import { clearCart, removeBook, addOneBook, removeOneBook } from '../store/slices/cartSlice';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import YesNoModal from './YesNoModal';
 
 import "../static/css/style.css";
 import "../static/css/book-filter.css";
 
 function Cart() {
   const dispatch = useDispatch();
-
-  // Get bookList from redux
   const bookList = useSelector(state => state.cart.books);
-  
-  // Defining local function for adding one book using redux action 
+
+  const [isShowModal, setIsShowModal] = useState(false);
+  const [selectedBook, setSelectedBook] = useState(null);
+
   const handleAddOne = (book) => {
     dispatch(addOneBook(book));
+    if (book.quantity>book.cartQuantity){
+      toast.success(`The quantity of "${book.name}" is increased!`);
+    }
   };
 
-  // Defining local function for removing book using redux action 
-  const handleRemoveBook = (book) => {
-    dispatch(removeBook(book));
-  };
-
-  // Defining local function for removing one book using redux action 
   const handleRemoveOneBook = (book) => {
     dispatch(removeOneBook(book));
+    console.log(book)
+    if (book.cartQuantity>0){
+      toast.info(`The quantity of "${book.name}" is decreased!`);
+    }
   };
 
-  // Defining local function for removing whole books using redux action 
+  const handleRemoveBook = (book) => {
+    setSelectedBook(book);
+    setIsShowModal(true);
+  };
+
+  const confirmRemoveBook = () => {
+    if (selectedBook) {
+      dispatch(removeBook(selectedBook));
+      toast.warn(`The book "${selectedBook.name}" is removed from cart!`);
+      setSelectedBook(null);
+      setIsShowModal(false);
+    }
+  };
+
   const handleRemoveBooks = () => {
     dispatch(clearCart());
+    toast.error('All books are removed from cart!');
   };
 
   return (
@@ -78,12 +96,12 @@ function Cart() {
                     </div>
                   </div>
                 </td>
-                <td>${book.price * book.cartQuantity}</td>
+                <td>₺{book.price * book.cartQuantity}</td>
                 <td>
-                  <i 
-                    className="fa-solid fa-trash" 
-                    onClick={() => handleRemoveBook(book)} 
-                    style={{cursor: 'pointer'}}
+                  <i
+                    className="fa-solid fa-trash"
+                    onClick={() => handleRemoveBook(book)}
+                    style={{ cursor: 'pointer' }}
                   />
                 </td>
               </tr>
@@ -91,15 +109,26 @@ function Cart() {
           </tbody>
         </table>
       </div>
-        <section className="discount-summary">
-        <div className="summary-section" style={{}}>
-          <div className="order-detail-table" style={{display:"grid"}}>
+      <section className="discount-summary">
+        <div className="summary-section">
+          <div className="order-detail-table" style={{ display: "grid" }}>
             <button className="order-detail-table">
               <a onClick={handleRemoveBooks}>Clear Cart</a>
             </button>
           </div>
         </div>
       </section>
+      <YesNoModal
+        isShowModal={isShowModal}
+        setIsShowModal={setIsShowModal}
+        title="Confirm Removal"
+        desc="Are you sure you want to remove this book?"
+        onClickYes={confirmRemoveBook}
+      />
+      <ToastContainer 
+      position="top-center" 
+      autoClose={2000}
+      />
     </section>
   );
 }

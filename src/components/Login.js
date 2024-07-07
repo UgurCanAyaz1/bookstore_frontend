@@ -6,6 +6,8 @@ import "../static/css/style.css";
 import { useDispatch, useSelector } from 'react-redux';
 import { SlicerLogin } from '../store/slices/userSlice';
 import { useNavigate } from "react-router-dom"
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const initialValues = {
   username: '',
@@ -44,8 +46,18 @@ const Login = () => {
         // Update User state and save updated user state to local storage
         handleLogin(user); 
 
-      // Navigate user to home page after successful login 
-        navigate("/")
+        toast.success(
+          <>
+            Welcome {user.username}!
+            <br />
+            Redirecting to Home Page in 4 seconds!
+          </>
+        );
+
+        setTimeout(() => {
+          // Navigate user to home page after successful login 
+          navigate("/")
+        }, 4000); 
       }
     } catch (error) {
       console.error('Login error', error);
@@ -103,6 +115,10 @@ const Login = () => {
             </Form>
           </Formik>
         </div>
+          <ToastContainer 
+        position="top-center" 
+        autoClose={4000}
+        />
       </section>
     </>
   );
